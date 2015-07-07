@@ -11,7 +11,22 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('pages.login');
-});
+Route::get('/', [
+   'as' => 'home',
+    'uses' => 'PagesController@home'
+]);
+
+Route::get('/admin', [
+    'as' => 'login_path',
+    'uses' => 'AuthController@index'
+]);
+//get registration
+Route::get('/register', [
+   'as' => 'register_path',
+   'uses' => 'RegistrationController@create'
+]);
+//post registration
+Route::post('/register', [
+    'as' => 'register_path',
+    'uses' => 'RegistrationController@store'
+]);
